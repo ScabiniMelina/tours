@@ -11,9 +11,11 @@ export const Home = () => {
     setIsLoading(true);
     try {
       const response = await fetch(apiUrl);
-      const tours = await response.json();
+      const data = await response.json();
+      console.log(data);
+      setTours(data);
       console.log(tours);
-      setTours(tours);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -27,8 +29,7 @@ export const Home = () => {
   if (isLoading) return <Loading />;
   return (
     <main>
-      <h1>Lista de Tours</h1>
-      <TourList tours={tours} />;
+      <TourList tours={tours} />
     </main>
   );
 };
